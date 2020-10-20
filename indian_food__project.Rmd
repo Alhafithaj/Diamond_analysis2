@@ -1,0 +1,120 @@
+---
+title: "Indian food"
+author: "Abdulmohsen Alhafith"
+date: "10/19/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(tidyverse)
+```
+
+## Including Plots
+
+```{r }
+library(tidyverse)
+# Importing the data
+
+indian_food <- read.csv("C:/Users/hme-h/Desktop/Misk/codes/indian_food.csv")
+```
+
+
+
+```{r}
+typeof(indian_food)
+names(indian_food)
+
+
+name(indian_food$diet)
+name(indian_food$flavor_profile)
+glimpse(indian_food$diet)
+
+indian_food %>%
+group_by(flavor_profile)
+
+```
+
+
+```{r cars}
+indian_food %>%
+group_by(flavor_profile) %>%
+  count()
+
+flavor_prop <-indian_food %>%
+group_by(diet) %>%
+
+  count()%>%
+  mutate(proption = n/nrow(indian_food))
+indian_food %>%
+group_by(flavor_profile) %>%
+  count() %>%
+  mutate(proption = n/nrow(indian_food))
+
+p1 <- flavor_prop$proption[1]
+dist <- dbinom(0:2, 2, p1)
+data.frame(y= dist, x = factor(0:2))%>%
+  ggplot(aes(x,y))+ geom_col()+labs(x="number of successes", y = "probability")+ coord_cartesian(expand = 0, ylim = c(0,1)) +
+  theme_classic()
+
+
+
+
+sweet_veg<-indian_food %>%
+filter (flavor_profile == "sweet" & diet == "vegetarian" )
+  
+
+
+# how can use the ingredients do not contian sugar?
+
+indian_food %>%
+filter (flavor_profile == "sweet" & diet == "vegetarian" & prep_time < 10 & cook_time < 20 )  
+
+indian_food %>%
+filter (diet == "non vegetarian" | diet == "vegetarian" )
+
+indian_food %>%
+group_by(flavor_profile)
+
+
+
+
+
+```
+
+
+
+
+```{r cars}
+
+```
+
+
+
+
+```{r cars}
+
+```
+
+
+
+
+```{r cars}
+
+```
+
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
