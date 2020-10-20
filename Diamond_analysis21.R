@@ -104,13 +104,40 @@ carat<- jems$carat
 
 ggplot(jems, aes(x = carat, y = price)) + geom_jitter()
 
+#Exercise 8.8 (Applying transformations)Using the functions we discuss earlier,
+#and in class, apply a log10 transformation to both the price and carat. You can
+#save these as new columns in the data set called price_log10 and carat_log10.
+
+
+carat_log10 <- log10(carat)
+price_log10 <- log10(price)
+
+# Exercise 8.9
+#Make a scatter plot that shows the price of a diamond as described by another continous variable, like the carat.
+
+ggplot(jems, aes(x = carat_log10, y = price_log10)) + geom_jitter()
+#Exercise  & 8.11 
+#Now that we’ve described the diamond price given a single variable, can you display
+#       that on the plot? Tryto use the geom_smooth() function to add this new layer.
+#`geom_smooth()` using formula 'y ~ x'
+
+ggplot(jems, aes(x = carat_log10, y = price_log10)) + geom_jitter() +geom_smooth()
+
+ggplot(diamonds, aes(price, carat)) + geom_smooth(method = "gam")
+
+ggplot(jems, aes(x = carat_log10, y = price_log10)) 
+
+#ggplot(jems, aes(carat_log10, price_log10, colour = red)) +
+ # geom_point() 
 
 
 
+
+#_____
 group_by(price,carat)
 
 plot(sin, -2*pi, 2*pi, main = "Sin(x)" )
-
+#______
 
 #reminder group by function 
 jems %>%
