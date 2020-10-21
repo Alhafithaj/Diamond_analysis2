@@ -94,7 +94,39 @@ group_by(flavor_profile)
 
 
 
-```{r cars}
+```{r study linear reggresion }
+names(indian_food)
+Cook_time<- indian_food$cook_time
+Prep_time<- indian_food$prep_time
+#ggplot(x = Prep_time , y = Cook_time )+geom_jitter()
+ggplot(indian_food, aes(x = Cook_time, y = Prep_time)) + geom_jitter() 
+# How can we contorl the window
+
+
+t <-  nrow(indian_food)
+mean_prep<- sum(Prep_time)/t
+sdprep <- sd(Prep_time)
+varince_prep <- (sdprep)^2
+summarise(indian_food) # what is wrong here?
+
+square_sum_the_difference_prep <- sum((Prep_time-mean_prep)^2) 
+sum_the_difference_prep <- sum((Prep_time-mean_prep)) 
+#_________________
+
+mean_cook<- sum(Cook_time)/t
+sdcook <- sd(Cook_time)
+varince_prep <- (sdcook)^2
+square_sum_the_difference_cook <- sum((Cook_time-mean_cook)^2)
+sum_the_difference_cook <- sum((Cook_time-mean_cook))
+#_____________
+r<-cor(Prep_time,Cook_time)
+
+rr<- sum((Prep_time-mean_prep)*(Cook_time-mean_cook))/sqrt(square_sum_the_difference_prep * square_sum_the_difference_prep)
+
+slop <-  sdcook/sdprep * rr
+
+
+Cook_time_intercept <- mean_cook + mean_prep * slop
 
 ```
 
